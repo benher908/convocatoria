@@ -26,7 +26,7 @@ export default function Experiencia() {
       setLoadingPage(true); 
       try {
         
-        const authResponse = await api.get('/auth/profile');
+        const authResponse = await api.get('/api/auth/profile');
       
         if (!authResponse.data || !authResponse.data.id) {
           console.log("ExperienciaPage: Usuario no autenticado, redirigiendo a /login.");
@@ -58,7 +58,7 @@ export default function Experiencia() {
   
   const fetchExperiencias = async (id_aspirante) => {
     try {
-      const response = await api.get(`/experiencias/${id_aspirante}`);
+      const response = await api.get(`/api/experiencias/${id_aspirante}`);
       setExperiencias(response.data.data); 
       console.log('ExperienciaPage: Experiencias cargadas:', response.data.data);
     } catch (err) {
@@ -124,7 +124,7 @@ export default function Experiencia() {
       }
 
       
-      const response = await api.post(`/experiencias/${currentUser.id}`, dataToSend, {
+      const response = await api.post(`/api/experiencias/${currentUser.id}`, dataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data', 
         },
@@ -161,7 +161,7 @@ export default function Experiencia() {
 
     try {
       
-      const response = await api.delete(`/experiencias/${currentUser.id}/${id_experiencia}`);
+      const response = await api.delete(`/api/experiencias/${currentUser.id}/${id_experiencia}`);
       if (response.status === 200) {
         setMensaje(response.data.message);
         

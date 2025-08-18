@@ -27,7 +27,7 @@ export default function LoginPage() {
 
     try {
       // La petición de login establecerá la cookie HttpOnly en el navegador
-      const response = await api.post('/auth/login', { email, password });
+      const response = await api.post('/api/auth/login', { email, password });
 
       if (response.status === 200) {
         console.log('LoginPage: Login exitoso. Redirigiendo a /perfil.');

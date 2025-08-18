@@ -26,7 +26,7 @@ export default function Logros() {
       setLoadingPage(true); 
       try {
         
-        const authResponse = await api.get('/auth/profile');
+        const authResponse = await api.get('/api/auth/profile');
         
         if (!authResponse.data || !authResponse.data.id) {
           console.log("LogrosPage: Usuario no autenticado, redirigiendo a /login.");
@@ -58,7 +58,7 @@ export default function Logros() {
 
   const fetchLogros = async (id_aspirante) => {
     try {
-      const response = await api.get(`/logros/${id_aspirante}`);
+      const response = await api.get(`/api/logros/${id_aspirante}`);
       setLogros(response.data.data);
       console.log('LogrosPage: Logros cargados:', response.data.data);
     } catch (err) {
@@ -124,7 +124,7 @@ export default function Logros() {
       }
 
     
-      const response = await api.post(`/logros/${currentUser.id}`, dataToSend, {
+      const response = await api.post(`/api/logros/${currentUser.id}`, dataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data', 
         },
@@ -162,7 +162,7 @@ export default function Logros() {
 
     try {
     
-      const response = await api.delete(`/logros/${currentUser.id}/${id_logro}`);
+      const response = await api.delete(`/api/logros/${currentUser.id}/${id_logro}`);
       if (response.status === 200) {
         setMensaje(response.data.message);
         

@@ -41,7 +41,7 @@ export default function Escolaridad() {
         const loadData = async () => {
             setLoadingPage(true);
             try {
-                const authResponse = await api.get('/auth/profile');
+                const authResponse = await api.get('/api/auth/profile');
                 if (!authResponse.data || !authResponse.data.id) {
                     router.push('/login');
                     return;
@@ -49,12 +49,12 @@ export default function Escolaridad() {
                 const user = authResponse.data;
                 setCurrentUser(user);
 
-                const instResponse = await api.get('/institutions');
+                const instResponse = await api.get('/api/institutions');
                 setInstituciones(instResponse.data);
 
                 let escolaridadData = {};
                 try {
-                    const escolaridadResponse = await api.get(`/escolaridad/${user.id}`);
+                    const escolaridadResponse = await api.get(`/api/escolaridad/${user.id}`);
                     escolaridadData = escolaridadResponse.data.data;
 
                     setDatosEscolaridad(prev => ({

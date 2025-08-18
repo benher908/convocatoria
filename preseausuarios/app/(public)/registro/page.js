@@ -41,10 +41,10 @@ export default function RegisterPage() {
     const fetchSelectOptions = async () => {
       try {
         const [regionsRes, categoriesRes, institutionsRes, statesRes] = await Promise.all([
-          api.get('/regions'),
-          api.get('/categories'),
-          api.get('/institutions'),
-          api.get('/states'), 
+          api.get('/api/regions'),
+          api.get('/api/categories'),
+          api.get('/api/institutions'),
+          api.get('/api/states'), 
         ]);
         setRegions(regionsRes.data);
         setCategories(categoriesRes.data);
@@ -137,7 +137,7 @@ export default function RegisterPage() {
     }
 
     try {
-      const response = await api.post('/auth/register', formData, {
+      const response = await api.post('/api/auth/register', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

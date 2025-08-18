@@ -1,13 +1,13 @@
 // frontend/app/(authenticated)/layout.js
-"use client"; // ¡Importante para que sea un Client Component y use hooks!
+"use client"; 
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import api from '../../services/axiosConfig'; // Tu instancia de Axios
+import api from '../../services/axiosConfig'; 
 import '../../styles/globals.css';
-import LayoutComponent from '../../components/Layout'; // Tu Layout principal (que contiene Header y Sidebar)
+import LayoutComponent from '../../components/Layout'; 
 
-// Importa los estilos que necesita este layout (para Header y Sidebar)
+
 import '../../styles/layout.module.css';
 
 export default function AuthenticatedLayout({ children }) {
@@ -23,18 +23,15 @@ export default function AuthenticatedLayout({ children }) {
 
     try {
       console.log('AuthenticatedLayout: [DEBUG] Intentando hacer GET a /auth/profile...');
-      const response = await api.get('/auth/profile');
+      const response = await api.get('api/auth/profile');
       
-      console.log('AuthenticatedLayout: [DEBUG] Petición /auth/profile COMPLETA. Status:', response.status);
-      console.log('AuthenticatedLayout: [DEBUG] Datos recibidos:', response.data);
-
       
-      if (response.data && response.data.id) { // <-- ¡CAMBIO AQUÍ! De id_aspirante a id
+      if (response.data && response.data.id) { 
           setIsAuthenticated(true);
-          setUser({ // Mapear los datos del backend
-              id: response.data.id, // <-- ¡CAMBIO AQUÍ! De id_aspirante a id
+          setUser({ 
+              id: response.data.id, 
               nombre: response.data.nombre,
-              email: response.data.email, // Tu backend devuelve 'email', no 'correo_contacto' aquí
+              email: response.data.email, 
               curp: response.data.curp,
               foto_perfil: response.data.foto_perfil
           });
@@ -59,22 +56,22 @@ export default function AuthenticatedLayout({ children }) {
     }
   };
 
-  // useEffect para disparar la verificación al montar el componente
+
   useEffect(() => {
     console.log('AuthenticatedLayout: [DEBUG] useEffect principal disparado. Llamando checkUserProfile...');
     checkUserProfile();
-  }, []); // Se ejecuta una sola vez al montar
+  }, []); 
 
-  // useEffect para la lógica de redirección
+
   useEffect(() => {
     console.log('AuthenticatedLayout: Estado de autenticación actual para redirección:', { isAuthenticated, loading });
-    if (!loading) { // Solo redirigir una vez que la carga ha terminado
-      if (!isAuthenticated) { // Si no está autenticado, redirige al login
+    if (!loading) { 
+      if (!isAuthenticated) { 
         console.log('AuthenticatedLayout: Usuario no autenticado, redirigiendo a /login');
         router.push('/login');
       }
     }
-  }, [isAuthenticated, loading, router]); // Dependencias del efecto de redirección
+  }, [isAuthenticated, loading, router]); 
 
   if (loading) {
     console.log('AuthenticatedLayout: Mostrando estado de carga...');
@@ -86,16 +83,15 @@ export default function AuthenticatedLayout({ children }) {
   }
 
   if (!isAuthenticated) {
-    // Si no está autenticado y ya terminó de cargar, no renderiza nada aquí,
-    // ya que el useEffect ya habrá redirigido.
+   
     return null;
   }
 
-  // Si está autenticado y cargado, renderiza el Layout principal
+
   console.log('AuthenticatedLayout: Usuario autenticado, renderizando LayoutComponent.');
   return (
-    <LayoutComponent isAuthenticated={isAuthenticated} user={user}> {/* Pasa props a LayoutComponent */}
-      {children} {/* Aquí se renderizarán las páginas protegidas */}
+    <LayoutComponent isAuthenticated={isAuthenticated} user={user}> 
+      {children} 
     </LayoutComponent>
   );
 }

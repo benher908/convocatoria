@@ -26,7 +26,7 @@ export default function Actividades() {
       setLoadingPage(true); // Indicar que la página está cargando
       try {
         // 1. Obtener usuario actual (id_aspirante) desde la API de autenticación
-        const authResponse = await api.get('/auth/profile');
+        const authResponse = await api.get('/api/auth/profile');
         // Si no hay datos de usuario o ID, redirigir al login
         if (!authResponse.data || !authResponse.data.id) {
           console.log("ActividadesPage: Usuario no autenticado, redirigiendo a /login.");
@@ -58,7 +58,7 @@ export default function Actividades() {
   // --- Función para obtener actividades desde el backend ---
   const fetchActividades = async (id_aspirante) => {
     try {
-      const response = await api.get(`/actividades/${id_aspirante}`);
+      const response = await api.get(`/api/actividades/${id_aspirante}`);
       setActividades(response.data.data); // Asume que el backend devuelve { data: [actividades] }
       console.log('ActividadesPage: Actividades cargadas:', response.data.data);
     } catch (err) {
@@ -126,7 +126,7 @@ export default function Actividades() {
 
       // Realizar la solicitud POST a la API
       // La ruta para POST es /api/actividades/:id_aspirante
-      const response = await api.post(`/actividades/${currentUser.id}`, dataToSend, {
+      const response = await api.post(`/api/actividades/${currentUser.id}`, dataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data', // Importante para el envío de archivos
         },
@@ -164,7 +164,7 @@ export default function Actividades() {
 
     try {
       // Realizar la solicitud DELETE a la API
-      const response = await api.delete(`/actividades/${currentUser.id}/${id_actividad}`);
+      const response = await api.delete(`/api/actividades/${currentUser.id}/${id_actividad}`);
       if (response.status === 200) {
         setMensaje(response.data.message);
         // Actualizar la lista de actividades filtrando la eliminada
@@ -178,8 +178,7 @@ export default function Actividades() {
     }
   };
 
-  // --- Renderizado Condicional ---
-  // Si la página está cargando, mostrar un mensaje de carga
+  
   if (loadingPage) {
     return (
       <div className={styles.container}>
@@ -189,7 +188,6 @@ export default function Actividades() {
     );
   }
 
-  // Si no hay usuario autenticado después de cargar, mostrar acceso denegado
   if (!currentUser) {
     return (
       <div className={styles.container}>
@@ -200,21 +198,21 @@ export default function Actividades() {
     );
   }
 
-  // Renderizado principal de la página de actividades
+ 
   return (
     <div className={styles.container}>
-      {/* Mostrar mensajes de éxito o error si existen */}
+  
       {mensaje && <p className={styles.successMessage}>{mensaje}</p>}
       {error && <p className={styles.errorMessage}>{error}</p>}
 
       <div className={styles.formSection}>
         <h2>Actividades Extra STEM</h2>
-        {/* Botón para alternar la visibilidad del formulario */}
+      
         <button className={styles.agregarBtn} onClick={toggleFormulario}>
           {formVisible ? '- Ocultar Formulario' : '+ Agregar Actividad'}
         </button>
 
-        {/* Formulario para agregar nueva actividad, visible solo si formVisible es true */}
+      
         {formVisible && (
           <form onSubmit={guardarActividad} className={styles.form}>
             <fieldset>
@@ -227,7 +225,7 @@ export default function Actividades() {
               <textarea id="descripcion" value={actividad.descripcion} onChange={handleChange} required maxLength="1000" />
 
               <label htmlFor="archivo">Archivo (PDF)</label>
-              {/* Input de tipo file para seleccionar el PDF */}
+            
               <input type="file" id="archivo" accept="application/pdf" onChange={handleFileChange} required />
             </fieldset>
 
@@ -235,7 +233,7 @@ export default function Actividades() {
           </form>
         )}
 
-        {/* Sección para mostrar la lista de actividades existentes */}
+        
         <div className={styles.actividadesLista}>
           {actividades.length === 0 ? (
             <p>No hay actividades extra STEM registradas aún.</p>
@@ -245,29 +243,29 @@ export default function Actividades() {
               <div className={styles.tarjetaActividad} key={act.id || idx}>
                 <h3>{act.titulo}</h3>
                 <p>{act.descripcion}</p>
-                {/* Mostrar un embed para el PDF si existe una URL */}
+                
                 {act.url && (
                   <div
-                    className={styles.contenedorPdf} // Reutilizamos el estilo contenedorPdf
+                    className={styles.contenedorPdf}
                     onClick={() => {
                       console.log('ActividadesPage: Click en contenedorPdf. Redirigiendo a PDF:', act.url);
-                      window.open(act.url, '_blank'); // Abrir el PDF en una nueva pestaña
+                      window.open(act.url, '_blank'); 
                     }}
-                    role="button" // Mejora la accesibilidad (indica que es un elemento interactivo)
-                    tabIndex="0" // Hace que sea enfocable con teclado
+                    role="button" 
+                    tabIndex="0" 
                   >
                     <embed
-                      src={`${act.url}#toolbar=0&navpanes=0&scrollbar=0`} // Ocultar toolbar, paneles de navegación y scrollbar del PDF
+                      src={`${act.url}#toolbar=0&navpanes=0&scrollbar=0`} 
                       type="application/pdf"
                       style={{
                         width: '100%',
                         height: '150px',
                         borderRadius: '6px',
                         cursor: 'pointer',
-                        pointerEvents: 'none' // Evita que el embed capture el click directamente
+                        pointerEvents: 'none' 
                       }}
                     />
-                    <div className={styles.textoPreview}>Ver PDF completo</div> {/* Reutilizamos textoPreview */}
+                    <div className={styles.textoPreview}>Ver PDF completo</div> 
                   </div>
                 )}
                 {/* Botón para eliminar la actividad */}

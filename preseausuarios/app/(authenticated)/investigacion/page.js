@@ -25,7 +25,7 @@ export default function Investigacion() {
       setLoadingPage(true); 
       try {
         
-        const authResponse = await api.get('/auth/profile');
+        const authResponse = await api.get('/api/auth/profile');
         
         if (!authResponse.data || !authResponse.data.id) {
           console.log("InvestigacionPage: Usuario no autenticado, redirigiendo a /login.");
@@ -57,7 +57,7 @@ export default function Investigacion() {
   
   const fetchInvestigaciones = async (id_aspirante) => {
     try {
-      const response = await api.get(`/investigaciones/${id_aspirante}`);
+      const response = await api.get(`/api/investigaciones/${id_aspirante}`);
       setInvestigaciones(response.data.data); 
       console.log('InvestigacionPage: Investigaciones cargadas:', response.data.data);
     } catch (err) {
@@ -121,7 +121,7 @@ export default function Investigacion() {
         console.log(pair[0]+ ': ' + pair[1]);
       }
     
-      const response = await api.post(`/investigaciones/${currentUser.id}`, dataToSend, {
+      const response = await api.post(`/api/investigaciones/${currentUser.id}`, dataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -159,7 +159,7 @@ export default function Investigacion() {
 
     try {
       
-      const response = await api.delete(`/investigaciones/${currentUser.id}/${id_investigacion}`);
+      const response = await api.delete(`/api/investigaciones/${currentUser.id}/${id_investigacion}`);
       if (response.status === 200) {
         setMensaje(response.data.message);
       

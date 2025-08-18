@@ -25,7 +25,7 @@ export default function Habilidades() {
       setLoadingPage(true);
       try {
         
-        const authResponse = await api.get('/auth/profile');
+        const authResponse = await api.get('/api/auth/profile');
         if (!authResponse.data || !authResponse.data.id) {
           console.log("HabilidadesPage: Usuario no autenticado, redirigiendo a /login.");
           router.push('/login');
@@ -54,7 +54,7 @@ export default function Habilidades() {
  
   const fetchHabilidades = async (id_aspirante) => {
     try {
-      const response = await api.get(`/habilidades/${id_aspirante}`);
+      const response = await api.get(`/api/habilidades/${id_aspirante}`);
       setHabilidades(response.data.data); 
       console.log('HabilidadesPage: Habilidades cargadas:', response.data.data);
     } catch (err) {
@@ -100,7 +100,7 @@ export default function Habilidades() {
 
     try {
       
-      const response = await api.post(`/habilidades/${currentUser.id}`, datosHabilidad); 
+      const response = await api.post(`/api/habilidades/${currentUser.id}`, datosHabilidad); 
 
       if (response.status === 201) { 
         setMensaje(response.data.message);
@@ -130,7 +130,7 @@ export default function Habilidades() {
     }
 
     try {
-      const response = await api.delete(`/habilidades/${currentUser.id}/${id_habilidad}`);
+      const response = await api.delete(`/api/habilidades/${currentUser.id}/${id_habilidad}`);
       if (response.status === 200) {
         setMensaje(response.data.message);
     

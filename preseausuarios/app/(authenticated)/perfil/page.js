@@ -29,7 +29,7 @@ export default function Perfil() {
         const loadUserData = async () => {
             setLoadingPage(true);
             try {
-                const authResponse = await api.get('/auth/profile');
+                const authResponse = await api.get('/api/auth/profile');
                 if (authResponse.data && authResponse.data.id) {
                     const userFromAuth = authResponse.data;
                     setCurrentUser(userFromAuth);
@@ -158,7 +158,7 @@ export default function Perfil() {
             if (profileData.evidenciaIdentidad instanceof File) dataToSend.append('evidenciaIdentidad', profileData.evidenciaIdentidad);
             if (profileData.cartaPostulacion instanceof File) dataToSend.append('cartaPostulacion', profileData.cartaPostulacion);
 
-            const response = await api.put(`/profile/${currentUser.id}`, dataToSend, {
+            const response = await api.put(`/api/profile/${currentUser.id}`, dataToSend, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
