@@ -71,7 +71,7 @@ export default function AuthenticatedLayout({ children }) {
     if (!loading) { // Solo redirigir una vez que la carga ha terminado
       if (!isAuthenticated) { // Si no está autenticado, redirige al login
         console.log('AuthenticatedLayout: Usuario no autenticado, redirigiendo a /login');
-        router.push('../(public)/login');
+        router.push('/login');
       }
     }
   }, [isAuthenticated, loading, router]); // Dependencias del efecto de redirección
