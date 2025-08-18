@@ -1,0 +1,79 @@
+/* styles/globals.css */
+:root {
+  --primary-color: #6A5492; /* Morado Oscuro */
+  --secondary-color: #07AE8B; /* Verde Turquesa */
+  --accent-color: #f7b731; /* Amarillo brillante */
+  --text-dark: #333;
+  --text-light: #fff;
+  --background-light: #f0f2f5;
+  --card-background: #ffffff;
+  --border-color: #e0e0e0;
+   --header-height: 60px;/* Altura del header en desktop */
+  --header-height-mobile: 100px;
+  --header-height: 100px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-light);
+  color: var(--text-dark);
+}
+
+/* Puedes agregar más estilos globales aquí */
+/* ===== Formulario ===== */
+form {
+  background-color: #fff;
+  width: 95%;
+  max-width: 700px;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+fieldset {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+legend {
+  font-weight: bold;
+  color: #6A5492;
+  font-size: 20px;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  color: #333;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+button[type="submit"] {
+  background-color: #07AE8B;
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #6A5492;
+}

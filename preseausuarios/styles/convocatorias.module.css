@@ -1,0 +1,109 @@
+.page {
+  padding: 3rem 1rem;
+}
+
+.title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #3b0764;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.layoutContainer {
+  max-width: 72rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.rowTop {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  width: 100%;
+  justify-items: center;
+}
+
+.rowBottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.cardWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  width: 20rem;
+  height: 100%;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 14rem;
+}
+
+.cardContent {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.cardTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-align: center;
+  color: #3b0764;
+  padding: 0 0.5rem;
+}
+
+.cardDescription {
+  font-size: 0.875rem;
+  color: #374151;
+  padding: 1rem 0;
+  text-align: center;
+  line-height: 1.625;
+  flex-grow: 1;
+}
+
+.cardButton {
+  margin-top: auto;
+  background-color: #16a34a;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.cardButton:hover {
+  background-color: #15803d;
+}
+
+@media (min-width: 640px) {
+  .page {
+    padding: 3rem 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .rowTop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

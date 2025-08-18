@@ -1,0 +1,304 @@
+/* Contenedor principal de la página */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar elementos horizontalmente */
+    padding: 2rem;
+    background-color: #f0f2f5; /* Color de fondo suave */
+    min-height: 100vh; /* Altura mínima para ocupar toda la vista */
+    width: 100%;
+}
+
+/* Sección que contiene el formulario y los botones */
+.formSection {
+    background-color: #ffffff; /* Fondo blanco para la sección */
+    padding: 2rem;
+    border-radius: 12px; /* Esquinas redondeadas */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    width: 100%;
+    max-width: 800px; /* Ancho máximo para la sección */
+    margin: 0 auto 2rem; /* Centrar la sección y añadir margen inferior */
+    text-align: center;
+}
+
+.formSection h2 {
+    color: #333; /* Color de texto oscuro para los títulos */
+    margin-bottom: 1.5rem;
+}
+
+/* Estilo para el botón de "Agregar Experiencia" */
+.agregarBtn {
+    background-color: #6A5492;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-bottom: 1.5rem;
+}
+
+.agregarBtn:hover {
+    background-color: #07AE8B;
+    transform: translateY(-2px);
+}
+
+.agregarBtn:active {
+    transform: translateY(0);
+}
+
+/* Estilos para el formulario de entrada de datos */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 1.5rem;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    text-align: left;
+}
+
+.form fieldset {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.form legend {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #555;
+    padding: 0 10px;
+}
+
+.form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #444;
+}
+
+/* Campos de entrada, áreas de texto y selectores */
+.form input[type="text"],
+.form input[type="number"],
+.form input[type="date"],
+.form textarea,
+.form select,
+.form input[type="file"] {
+    width: 100%; /* Ajustado a 100% para mejor responsividad */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+    box-sizing: border-box; /* Incluir padding en el ancho total */
+}
+
+.form textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Estilo para el botón de "Guardar Experiencia" */
+.saveButton {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 15px;
+}
+
+.saveButton:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+/* Lista de experiencias */
+.experienciasLista {
+    width: 100%;
+    max-width: 800px;
+    margin-top: 2rem;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Estilo para cada tarjeta de experiencia */
+.experienciaCard {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.experienciaCard h3 {
+    color: #333;
+    margin: 0;
+    font-size: 1.4em;
+}
+
+.experienciaCard p {
+    color: #555;
+    margin: 0;
+}
+
+/* Estilo para el botón de "Eliminar" */
+.eliminarBtn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 15px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: flex-end;
+}
+
+.eliminarBtn:hover {
+    background-color: #c82333;
+}
+
+/* Contenedor y texto de previsualización de PDF */
+.contenedorPdf {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.textoPreview {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.9em;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.contenedorPdf:hover .textoPreview {
+    opacity: 1;
+}
+
+.successMessage,
+.errorMessage {
+    padding: 10px;
+    border-radius: 8px;
+    margin: 0 auto 1rem;
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+}
+
+.successMessage {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.errorMessage {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+    .formSection {
+        padding: 1.5rem;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .experienciasLista,
+    .successMessage,
+    .errorMessage {
+        padding: 1.5rem;
+        max-width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .form fieldset {
+        padding: 15px;
+    }
+    .agregarBtn,
+    .saveButton,
+    .eliminarBtn {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 80%;
+    }
+    .formSection,
+    .experienciasLista,
+    .successMessage,
+    .errorMessage {
+        padding: 1rem;
+    }
+    .form input,
+    .form textarea,
+    .form select,
+    .form input[type="file"] {
+        font-size: 0.9em;
+    }
+    .experienciaCard {
+        padding: 1rem;
+    }
+    .experienciaCard h3,
+    .experienciaCard p {
+        font-size: 0.9em;
+    }
+    .contenedorPdf {
+        height: 120px;
+    }
+}
+
+@media (max-width: 320px) {
+    .container{
+      width: 70%;
+    }
+    .formSection,
+    .experienciasLista,
+    .successMessage,
+    .errorMessage {
+        padding: 0.5rem;
+    }
+    .form input,
+    .form textarea,
+    .form select,
+    .form input[type="file"],
+    .agregarBtn,
+    .saveButton,
+    .eliminarBtn {
+        font-size: 0.8em;
+    }
+    .experienciaCard {
+        padding: 0.8rem;
+    }
+}

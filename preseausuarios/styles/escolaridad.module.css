@@ -1,0 +1,420 @@
+/* Contenedor principal de la página */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrar elementos horizontalmente */
+  padding: 2rem;
+  background-color: #f0f2f5; /* Color de fondo suave */
+  min-height: 100vh; /* Altura mínima para ocupar toda la vista */
+  width: 100%;
+}
+
+/* Sección que contiene el formulario y los botones */
+.form-section {
+  background-color: #ffffff; /* Fondo blanco para la sección */
+  padding: 2rem;
+  border-radius: 12px; /* Esquinas redondeadas */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  width: 100%;
+  max-width: 800px; /* Ancho máximo para la sección */
+  margin: 0 auto 2rem; /* Centrar la sección y añadir margen inferior */
+  text-align: center;
+}
+
+.form-section h2 {
+  color: #333; /* Color de texto oscuro para los títulos */
+  margin-bottom: 1.5rem;
+}
+
+/* Estilo para los botones de alternancia entre vista y edición */
+.toggleButtons {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 2rem; /* Centrar y añadir margen inferior */
+  width: 100%;
+  max-width: 800px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.toggleButtons button {
+  flex: 1;
+  padding: 15px 20px;
+  border: none;
+  background-color: transparent;
+  color: #6A5492;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.toggleButtons button.activeTab {
+  background-color: #6A5492;
+  color: white;
+  border-bottom: 3px solid #07AE8B;
+}
+
+.toggleButtons button:hover:not(.activeTab) {
+  background-color: #f0f2f5;
+}
+
+/* Estilo para el botón de "Agregar Actividad" */
+.agregarBtn {
+  background-color: #6A5492;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 25px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-bottom: 1.5rem;
+}
+
+.agregarBtn:hover {
+  background-color: #07AE8B;
+  transform: translateY(-2px);
+}
+
+.agregarBtn:active {
+  transform: translateY(0);
+}
+
+/* Estilos para el formulario de entrada de datos */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 1.5rem;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  text-align: left;
+}
+
+.form fieldset {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 20px;
+}
+
+.form legend {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #555;
+  padding: 0 10px;
+}
+
+.form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #444;
+}
+
+/* Campos de entrada, áreas de texto y selectores */
+.form input[type="text"],
+.form input[type="number"],
+.form input[type="date"],
+.form textarea,
+.form select,
+.form input[type="file"] {
+  width: 100%; /* Ajustado a 100% para mejor responsividad */
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1em;
+  box-sizing: border-box; /* Incluir padding en el ancho total */
+}
+
+.form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Sección para añadir nueva institución */
+.add-institution-section {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px dashed #ccc;
+}
+
+.add-institution-section label {
+  margin-top: 10px;
+}
+
+/* Estilo para el botón de "Guardar Escolaridad" */
+.saveButton {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 25px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 15px;
+}
+
+.saveButton:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+/* Vista de los datos de escolaridad */
+.vista-escolaridad {
+  width: 100%;
+  max-width: 800px;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  margin: 2rem auto 0; /* Centrar y añadir margen superior */
+}
+
+.vista-escolaridad h2 {
+  color: #333;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Tarjeta de perfil (usada para agrupar secciones en la vista) */
+.tarjeta-perfil {
+  background-color: #e9ecef;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1.5rem;
+}
+
+.tarjeta-perfil h3 {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.4em;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.5rem;
+}
+
+/* Campo individual en la vista */
+.campo {
+  margin-bottom: 1rem;
+}
+
+.campo label {
+  font-weight: bold;
+  color: #555;
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.95em;
+}
+
+.campo p {
+  color: #333;
+  margin-left: 0;
+  font-size: 1em;
+}
+
+/* Estilo para el botón de "Editar Escolaridad" en la vista */
+.editButton {
+  background-color: #6A5492;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 25px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin: 1.5rem auto 0;
+  display: block;
+}
+
+.editButton:hover {
+  background-color: #07AE8B;
+  transform: translateY(-2px);
+}
+
+/* Contenedor para previsualizaciones de archivos */
+.preview-container {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+  flex-direction: column;
+  gap: 10px;
+}
+
+.preview-image, .preview-iframe {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.preview-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.view-file-link {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 0.9em;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.view-file-link:hover {
+  background-color: #0056b3;
+}
+
+.unsupported-file-type {
+  color: #777;
+  font-style: italic;
+  font-size: 0.9em;
+}
+
+/* Mensajes de feedback (éxito y error) */
+.successMessage,
+.errorMessage {
+  padding: 10px;
+  border-radius: 8px;
+  margin: 0 auto 1rem; /* Centrar y añadir margen inferior */
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+}
+
+.successMessage {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.errorMessage {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+
+
+
+@media (max-width: 768px) {
+  .container {
+    width: 80%;
+  }
+  .form-section{
+    padding-right: 3.5rem;
+  }
+  
+  .vista-escolaridad,
+  .toggleButtons,
+  .successMessage,
+  .errorMessage {
+    padding: 1.5rem;
+    max-width: 95%;
+    margin-left:2rem ;
+  }
+
+  .form fieldset {
+    padding: 15px;
+  }
+
+  .saveButton,
+  .editButton {
+    padding: 10px 20px;
+    font-size: 1em;
+  }
+
+  .toggleButtons button {
+    font-size: 1em;
+    padding: 12px 15px;
+  }
+
+  @media (max-width: 480px) {
+  .container {
+    width: 70%;
+  }
+
+  .form-section{
+    padding-right: 2.5rem;
+    
+  }
+  .vista-escolaridad,
+  .toggleButtons,
+  .successMessage,
+  .errorMessage {
+    padding: 0rem;
+  }
+
+  .form input,
+  .form textarea,
+  .form select,
+  .form input[type="file"] {
+    font-size: 0.9em;
+  }
+
+  .tarjeta-perfil {
+    padding: 1rem;
+  }
+
+  .campo label,
+  .campo p {
+    font-size: 0.9em;
+  }
+
+  .preview-container {
+    height: 120px;
+  }
+
+  .view-file-link {
+    font-size: 0.8em;
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 320px) {
+  .container{
+    width: 70%;
+  }
+  .vista-escolaridad,
+  .toggleButtons,
+  .successMessage,
+  .errorMessage {
+    padding: 0.5rem;
+  }
+  .form-section{
+    padding-right: 3.5rem;
+  }
+
+  .form input,
+  .form textarea,
+  .form select,
+  .form input[type="file"],
+  .toggleButtons button,
+  .saveButton,
+  .editButton {
+    font-size: 0.8em;
+  }
+
+  .tarjeta-perfil {
+    padding: 0.8rem;
+  }
+}
+}

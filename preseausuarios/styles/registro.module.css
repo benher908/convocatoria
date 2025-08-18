@@ -1,0 +1,108 @@
+/* Registro.module.css */
+
+.mainRegistro {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Alineación superior para mejor visibilidad en móviles */
+  padding: 1.5rem; /* Relleno responsivo */
+  min-height: 100vh;
+  background-color: #f0f2f5;
+  box-sizing: border-box;
+}
+
+.registroContainer {
+  background-color: #fff;
+  padding: clamp(1.5rem, 5vw, 2.5rem); /* Relleno responsivo con clamp */
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  margin-top: 2rem; /* Espacio superior para que no se pegue al borde */
+}
+
+/* En dispositivos móviles, el contenedor ocupa más espacio */
+@media (max-width: 768px) {
+  .registroContainer {
+    max-width: 95%;
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form label {
+  margin-top: 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.form input,
+.form select {
+  padding: 0.75rem; /* Aumento del padding para mejor interacción táctil */
+  border-radius: 8px; /* Bordes más redondeados */
+  border: 1px solid #ddd;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+  width: 100%; /* Asegura que el input ocupe el 100% del contenedor */
+}
+
+.agregarBtn {
+  margin-top: 2rem;
+  padding: 1rem; /* Aumento del padding para que el botón sea más grande */
+  background-color: #07AE8B;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.agregarBtn:hover {
+  background-color: #069f7e;
+  transform: translateY(-2px);
+}
+
+.listaInstituciones {
+  margin-top: 0.5rem;
+  padding: 0;
+  list-style: none;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  max-height: 180px; /* Aumento del alto para mostrar más elementos */
+  overflow-y: auto;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 100%;
+}
+
+.listaInstituciones li {
+  padding: 10px 15px; /* Aumento del padding para mejor selección */
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.listaInstituciones li:last-child {
+  border-bottom: none;
+}
+
+.listaInstituciones li:hover,
+.listaInstituciones li:focus {
+  background-color: #07AE8B;
+  color: white;
+  outline: none;
+}
+
+.sinResultados {
+  padding: 10px 15px;
+  color: #999;
+  font-style: italic;
+  text-align: center;
+  cursor: default;
+}
