@@ -94,6 +94,10 @@ const upsertEscolaridad = async (req, res) => {
     } = req.body;
 
     let connection;
+    let constanciaUrl = null; 
+    let tituloUrl = null; 
+    let cedulaUrl = null; 
+
     try {
         connection = await pool.getConnection();
         await connection.beginTransaction();
@@ -127,9 +131,9 @@ const upsertEscolaridad = async (req, res) => {
             fecha_emision: fecha_emision || null,
         };
 
-        const constanciaUrl = req.files && req.files['constancia_file'] ? getPublicUrl(req.files['constancia_file'][0].key) : null;
-        const tituloUrl = req.files && req.files['titulo_file'] ? getPublicUrl(req.files['titulo_file'][0].key) : null;
-        const cedulaUrl = req.files && req.files['cedula_file'] ? getPublicUrl(req.files['cedula_file'][0].key) : null;
+        constanciaUrl = req.files && req.files['constancia_file'] ? getPublicUrl(req.files['constancia_file'][0].key) : null;
+        tituloUrl = req.files && req.files['titulo_file'] ? getPublicUrl(req.files['titulo_file'][0].key) : null;
+        cedulaUrl = req.files && req.files['cedula_file'] ? getPublicUrl(req.files['cedula_file'][0].key) : null;
 
         escolaridadFields.constancia_url = constanciaUrl || currentEscolaridad?.constancia_url || null;
         if (constanciaUrl && currentEscolaridad && currentEscolaridad.constancia_url && constanciaUrl !== currentEscolaridad.constancia_url) {
@@ -193,10 +197,6 @@ const upsertEscolaridad = async (req, res) => {
             id_institucion: updatedEscolaridadData.id_institucion,
             nivel: updatedEscolaridadData.nivel_estudios,
             titulo_obtenido: updatedEscolaridadData.titulo_obtenido || '',
-            estado: updatedEscolaridadData.estado_grado,
-            cedula_profesional: updatedEscolaridadData.cedula_profesional || '',
-            fecha: updatedEscolaridadData.fecha_emision ? updatedEscolaridadData.fecha_emision.toISOString().split('T')[0] : '',
-            constanciaUrl: updatedEscolaridadData.constancia_url,
             tituloUrl: updatedEscolaridadData.titulo_file_url,
             cedulaUrl: updatedEscolaridadData.cedula_file_url,
             isComplete: isEscolaridadComplete
@@ -211,6 +211,8 @@ const upsertEscolaridad = async (req, res) => {
         if (connection) {
             await connection.rollback();
         }
+
+        // Ya que las variables se declaran fuera del try, esto funcionará
         if (constanciaUrl) await deleteFileFromR2(constanciaUrl);
         if (tituloUrl) await deleteFileFromR2(tituloUrl);
         if (cedulaUrl) await deleteFileFromR2(cedulaUrl);

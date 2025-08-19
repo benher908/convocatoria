@@ -85,22 +85,23 @@ const registerUser = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, salt);
 
         const [result] = await connection.execute(
-            `INSERT INTO aspirante (
-                nombre, ap_paterno, ap_materno, curp, correo_contacto, password,
-                id_region_procedencia, id_categoria, id_institucion, foto_perfil
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-            [
-                nombre,
-                ap_paterno,
-                ap_materno === undefined || ap_materno === null || ap_materno.trim() === '' ? null : ap_materno,
-                curp,
-                correo_contacto,
-                hashedPassword,
-                id_region_procedencia,
-                id_categoria,
-                id_institucion,
-                fotoUrl 
-            ]
+        `INSERT INTO aspirante (
+            nombre, ap_paterno, ap_materno, curp, correo_contacto, password,
+            id_region_procedencia, id_categoria, id_institucion, foto_perfil, id_zona
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    [
+        nombre,
+        ap_paterno,
+        ap_materno === undefined || ap_materno === null || ap_materno.trim() === '' ? null : ap_materno,
+        curp,
+        correo_contacto,
+        hashedPassword,
+        id_region_procedencia,
+        id_categoria,
+        id_institucion,
+        fotoUrl,
+        null 
+    ]
         );
 
         const newUser = {
